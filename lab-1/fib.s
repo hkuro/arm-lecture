@@ -11,7 +11,7 @@
 fibonacci:
 	@ ADD/MODIFY CODE BELOW
 	@ PROLOG
-	push {r3, r4, r5, lr} @在Thumb狀態下，保存多個暫存器資料到堆疊去。
+	push {r3, r4, r5, lr} 
 
 	subs r4,r0,#0	@ R4 = R0 - 0 (update flags)
 	ble .L3		@ if(R0 <= 0) goto .L3 (which returns 0)
