@@ -8,27 +8,29 @@
 	.global fibonacci
 	.type fibonacci, function
 
+
+	@According to PPT P71 Sample algorithms
 fibonacci:
 	@ ADD/MODIFY CODE BELOW
 	@ PROLOG
-	push {r3, r4, r5, lr}
+	push {r3, r4, r5,r6, lr}
+	mov r3,#-1					@int previous = -1;
+	mov r4,#1					@int result = 1;
+	mov r5,#0					@int i = 0;
+	mov r6,#0					@int sum = 0;
+					
+forloop:						@for loop
+	add r6,r4,r3					@sum = result+previous;
+	mov r3,r4					@privious = result;
+	mov r4,r6					@result = sum;
+	
+	add r5,#1					@i=i+1
+	CMP r0,r5					@CMP=compare, x-i>0
+	it ge						@if then, ge= >=
+	bge forloop					@next forloop
 
-	@ R4 = R0 - 0 (update flags)
-	@ if(R0 <= 0) goto .L3 (which returns 0)
-
-	@ Compare R4 wtih 1
-	@ If R4 == 1 goto .L4 (which returns 1)
-
-	@ R0 = R4 - 1
-	@ Recursive call to fibonacci with R4 - 1 as parameter
-
-	@ R5 = R0
-	@ R0 = R4 - 2
-	@ Recursive call to fibonacci with R4 - 2 as parameter
-
-	@ R0 = R5 + R0 (update flags)
-
-	pop {r3, r4, r5, pc}		@EPILOG
+	mov r0,r6					@r0 is return
+	pop {r3, r4, r5,r6,pc}		@EPILOG
 
 	@ END CODE MODIFICATION
 .L3:
