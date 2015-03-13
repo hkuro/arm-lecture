@@ -27,7 +27,7 @@ forloop:						@for loop
 	add r5,#1					@i=i+1
 	CMP r0,r5					@CMP=compare, x-i>0
 	it ge						@if then, ge= >=
-	bge forloop					@next forloop
+	bge forloop					@next cycle or finish loop
 
 	mov r0,r6					@r0 is return
 	pop {r3, r4, r5,r6,pc}		@EPILOG
