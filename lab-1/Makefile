@@ -26,9 +26,9 @@ clean:
 QEMU_CMD = qemu-arm -L /usr/arm-linux-gnueabihf ./fibseq &
 CMD = yes 9 | $(call QEMU_CMD) && sleep 1
 qemu: fibseq
-	@yes 5 | $(call QEMU_CMD)
+	@yes 15 | $(call QEMU_CMD)
 	@sleep 1
-	@yes 6 | $(call QEMU_CMD)
+	@yes 16 | $(call QEMU_CMD)
 	@sleep 1
-	@yes 7 | $(call QEMU_CMD)
+	@yes 17 | $(call QEMU_CMD)
 	@sleep 1
